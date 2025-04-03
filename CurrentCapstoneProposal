@@ -1,0 +1,133 @@
+
+ 
+
+Information Systems Capstone Project Proposal
+
+Wireless Private Network
+Casey Gunter
+3/31/2025
+
+
+
+
+Table of Contents
+Abstract	3
+Project Description	3
+Project Scope	4
+Skills and Technologies	5
+Project Features	6
+Project Deliverables	6
+Project Milestones	7
+Project Phase Breakdown	7
+Project Timeline	8
+First Two-Week: Task Breakdown	8
+References and Research Links	9
+
+ 
+Abstract
+The objective of my project is to create a wireless network containing a PBX system, messaging, and file sharing capabilities that will be hosted on a Raspberry Pi. User authentication and collection will be managed in AWS to track users and traffic. My iteration of the project will include custom applications or shared files to be accessed by permitted users. The GitHub repository will contain custom images and executables to easily replicate this project. This network will allow people to connect locally or through the OpenVPN service. This system will later be adapted with AWS functionality for scalability and capacity. The service will operate without the reliance of AWS to allow people to use this service on their own resources.
+A Raspberry Pi will host the network and services that users will be connecting to. The 3CX PBX system will be used to handle VOIP calls. MicroSIP and MizuDroid will be used on Windows and Android respectively for users’ softphones. Squiggle will be used to handle messaging and file sharing. OpenVPN will be used for users to connect remotely and securely to the network. Amazon VPC, Amazon EC2, and AWS End User Messaging will be used to handle these services with the scalability and capacity that AWS can provide. While this project could be replicated using AWS, a physical device will allow users to keep their replications separate and build to their own preferences without the need to understand AWS. GitHub will be used to store documentation and configuration for replication and spread of information.
+The final product of this project is a private PBX, messaging, and file sharing service that anyone can run on their own resources with the functionality of migrating to AWS services for scalability and ease of use. The product will have the ability to add new features, but the bare bones model is a private wireless network for users to connect to and utilize. This network will have custom features with documentation on the GIT repo for replication.
+Project Description
+	This project gives me the opportunity to expand my knowledge in networking, firewalls, online hosting and web services. All of these characteristics are very important in the current technological landscape. I want to be able to host a system privately and have users connect locally or remotely using a wireless connection. This project is ever expanding and will give me the opportunity to continue after the capstone is completed. I want to make the applications, hardware, and configurations public, so others can replicate this project. This project will give me experience in better understanding routing, system security, wireless access/access over web, and using online services to host and process information. 
+	This project will help make me a better IS professional by better understanding the foundations of networking, server management, and hardware while giving me new experience into current implementations of AWS, networks, security, and hardware demands. It will give me great experience in researching and learning more about the field of technology. I will be using a Raspberry Pi to host the files shared over network connections. It will contain an executable and configuration document for their connections to the system. This will be the main resource that people will be going through to connect with all the technologies. Using 3CXOne on an Armbian VM running on the pi, I can implement a PBX for calls and messaging to go through MizuDroid and MicroSIP for users to use while connected to the network. I will use Node.js hosted on AWS to make an authentication web page for the network. I want this network to be easily accessible and replicated for other users to meet demand. As this project expands, I will utilize AWS or better storage hardware for the pi.
+	This project will create a privately hosted wireless network for users to connect and utilize whatever systems they want to modify or implement. This project can be seen as a system for users and businesses to use to set up a private network that hosts whatever systems they need. With this project being made publicly available, it allows others to add, change, and make their own machines. The project will give me the opportunity to expand my knowledge in networks, hardware, and public software. Working with hardware limitations will help me understand efficiently and effectively building machines.
+Project Scope
+	This project will accomplish the Capstone goal by building out custom networks, hardware devices, and implementing network security to make it more secure. Utilizing software and hardware that I haven’t experienced before will give me the opportunity to expand my knowledge on the topic. More technologies will be discovered and made available to me as I continue my progress on the project. The research will take a lot of time to understand how things work and how to implement them. Making changes to hardware will take time to understand and correct any mistakes; I intend to start with more RAM and storage of a prebuilt model of a pi. Using cooling and SDRAM tuning, I will be able to meet my physical requirements. Time between classes, after classes, and during commutes will give me ample time to reach a minimum four hour mark each day of the week to reach a minimum twenty-hour mark per week. Troubleshooting and testing will be conducted as necessary on top of this time commitment. This project will be a baseline for the network and simple additions; the ever-expanding nature of this project means that there is no limit to what I can add later down the line. Regular reports and Trello board to track project and list of items will help keep me focused and on time with progress.
+Skills and Technologies
+New Technologies	Existing Skills/Tech
+3CXOne – PBX	Raspberry Pi – Hardware
+MizuDroid – Android Softphone	MicroSIP – Windows Softphone
+OpenVPN – VPN Service	Implementing PBX
+Wireless Connection to Raspberry Pi	AWS navigation – Authentication web page
+Additional hardware for Pi	GitHub - repo
+Palo Alto	Node.js
+Armbian – Debian-based Linux system for pi os	
+
+These technologies are chosen for their implementation in the private wireless network. These technologies are used on Windows, Android, and AWS. The Raspberry Pi will be used as the primary connection through the network. Setting up firewall server and PBX for users to connect with and use over online services will be connected there. I want this to be secure by limiting the risk to the devices and network. My skills with AWS will help implement the authentication web page for the network. Networking and access to the running machines will easily give proof to things communicating and working as they should. Testing each phase will consist of network connection testing, hardware stress testing, and ensuring systems are working as expected. This project after capstone can be implemented in any way expanding upon the PBX or files sharing. I’m building this capstone with the idea that it can be continually improved over new technologies. This project will be made public, so people can expand upon or use it as they need.
+Project Features
+•	Local Wired Connection to the network – Raspberry Pi
+•	Remote Connection to the network over internet connection
+•	AWS Web Page to distribute authorized keys for access to the network
+•	VOIP Softphone Calls, Messaging, and Logs – 3CXOne, MizuDroid, MicroSIP
+•	File Sharing between devices connected to the network – Speed and size better than other free options
+•	Stretch Goal – Simple application that can accessed through AWS/Potential Database
+Project Deliverables
+•	Private network utilizing AWS and a PBX
+•	Proof of concepts applications and executables accessible through network
+•	Logical and Physical Diagrams for understanding
+•	Executable and configuration documentation for replication
+Project Milestones
+•	Milestone #1: Understanding and creating the necessary hardware specifications for the Raspberry Pi including cooling, storage, and SDRAM tuning.
+•	Milestone #2: Implementing the PBX system and softphones to support calls, messaging, file sharing, and other features built upon later.
+•	 Milestone #3: Configuring the OpenVPN server with AWS web page to authenticate new users and supply credentials to connect remotely to the network.
+Project Phase Breakdown
+•	Prototype 
+o	Research – Building Raspberry Pi, Implementing OpenVPN, AWS Web page for authentication
+o	Network is working and connected remotely, users can get VPN credentials, simple PBX for users to use
+•	Finished product
+o	Remote access to the network that can utilize as features hosted
+o	Stress test hardware and network to confirm capacity
+o	Have users on the network to convince access and implementation
+•	Polish and prepare 
+o	Build and improve hardware for more capacity
+o	Fix issues reported during testing
+o	Ensure software is behaving efficiently
+o	Build documentation and presentation
+
+Project Timeline
+Week Number	Milestone or Task Description	Estimate Time to Complete
+Week 1	•	Get access to my own Raspberry Pi 5
+•	Research necessary configurations to make to Raspberry Pi
+•	Make configuration to the Pi to handle the tasks of the project	 22 Hours
+Week 2	•	Run Raspberry Pi OS machine on Pi
+•	Secure network with palo alto
+•	Begin building network configurations	 21 Hours
+Week 3	•	Access the pi through a wireless connection
+•	Research how to use OpenVPN
+•	Build the VPN server onto the Pi	 26 Hours
+Week 4	•	Give credential details and access to VPN
+•	Research on how to implement 3CXOne	24 Hours
+Week 5	•	Build 3CXOne PBX system on pi
+•	Make PBX accounts for users	 22 Hours
+Week 6	•	Download and configure softphone for PBX users
+•	Research how to send files to users connected to network
+•	Have a storage device for users to connect to	 23 Hours
+Week 7	•	Build the credentials for the VPN server
+•	Access the Pi through the VPN
+•	Research how to host/use a web page on AWS	 25 Hours
+Week 8	•	Build web page hosted on AWS
+•	Get credential request from AWS	 22 Hours
+Week 9	•	User feedback and changes	 25 Hours
+Week 10	•	Polish project
+•	Prepare Documentation and Presentation	 25 Hours
+First Two-Week: Task Breakdown
+Week Number	Milestone or Task Description	Estimate Time to Complete
+Week 1		22 Hours
+	Get a Raspberry Pi build kit	2
+	Research configuration to improve Pi	7
+	Research hardware demands of software	7
+	Make hardware configuration to the Pi	6
+Week 2		21 Hours
+	Build Raspberry Pi server for early testing	6
+	Build Palo Alto for firewall	6
+	Build network configurations	3
+	Host network wirelessly	6
+
+References and Research Links
+•	Used to understand raspberry pi and changes
+o	https://www.raspberrypi.com/documentation/computers/os.html 
+o	https://www.raspberrypi.com/documentation/computers/getting-started.html 
+•	Used to configure Palo Alto
+o	https://docs.paloaltonetworks.com/pan-os/11-0/pan-os-admin/getting-started/integrate-the-firewall-into-your-management-network/perform-initial-configuration 
+•	Used to configure 3CXOne
+o	https://www.3cx.com/docs/
+•	Used to configure softphones
+o	https://www.microsip.org/
+o	https://www.mizu-voip.com/Portals/0/Files/Android_User_Guide.pdf 
+•	Used to configure VPN
+o	https://openvpn.net/community-resources/how-to/
+•	Used to configure AWS web page
+o	https://aws.amazon.com/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/
+•	Used for base OS on Pi
+o	https://www.armbian.com/
