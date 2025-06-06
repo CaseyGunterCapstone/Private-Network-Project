@@ -1,1 +1,171 @@
-Beginning of file
+
+ 
+
+Information Systems Capstone Documentation
+
+Wireless Private Network
+Casey Gunter
+3/31/2025-6/6/2025
+
+
+
+
+Table of Contents
+My Own VMs	3
+Raspberry Pi 5 Components and Changes	4
+PBX System Using 3CXOne	5
+File Share Server Using Samba	6
+VPN Server Using OpenVPN	7
+Firewall Using pfSense	8
+Softphones	8
+AWS EC2, EIP, IAM	9
+Authentication Site	10
+Useful Links	11
+
+
+
+
+
+
+
+
+
+
+My Own VMs
+  
+
+
+
+
+
+Raspberry Pi 5 Components and Changes
+Link to Amazon to purchase the exact kit. Updated 6/5/2025 
+CanaKit Raspberry Pi 5 Starter Kit PRO – Turbine Black 128 GB Edition 8 GB RAM
+•	8 GB RAM
+•	128 GB EVO+ Micro SD Card
+•	CPU Speed 2.4E+9 MHz 64-bit quad-core
+•	Turbine Black Case for Raspberry Pi 5
+•	Low Noise Bearing System Fan
+•	Mega Heat Sink
+•	2x Display Cables
+•	5A USB-C PD Raspberry Pi 5 Power Supply
+•	USB MicroSD Card Reader
+SDRAM tuning was used to overclock the speeds for the Raspberry Pi. If you have performance issues with the Pi while tuning is active, revert the changes to prevent damage. For the purposes of this project, you may not need to tune the RAM in the Pi.
+ 
+PBX System Using 3CXOne
+3CXOne likes to host and manage your virtual pbx on their cloud. They offer different options including a free trial tier. If you use 3CXOne as your pbx and want to remain free, you will need to create new accounts for the free tier or use a different pbx option. I lost access to my 3CXOne pbx server and had to restart. I recommend FreePBX if you want to replicate this.
+3CXOne’s site includes many useful links for their various guides and what they offer including: “Virtual PBX”, “Build Voice Apps”, “SIP Server”, “Free Softphone”, “Call Reporting”, “WordPress Chat Plugin”, “3CX AI”, and “SIP Trunks.”
+3CXone offers their own softphone, but if you want to play around with various softphones, I recommend MicroSIP for Windows and MizuDroid for Android.
+I created a VM that is running 3CXOne pbx on the Raspberry Pi. You need to submit your configuration file to 3CXOne’s network. From there you can access or edit how you want to set up your pbx. It is possible to create an On Premise pbx using 3CXOne, but I recommend using their hosted options because of simplicity and security.
+There are many videos on YouTube to work you through several aspects of the 3CXOne pbx. Make your own configurations as you see fit/how you like. These videos are great aids to help you initially. 3CXOne has many links, documentation, and guides on their site if you look close enough. This includes installing, setting up, SIP trunking, call routing, call queues, configuring IP phones, and more.
+
+
+
+
+
+
+
+
+File Share Server Using Samba
+This is a quite simple part of the project. The pbx and file share are being run by the Raspberry Pi. A straightforward way to implement Samba is using the Ubuntu OS. Ubuntu offers a guide to fully configure this. Remember to set up your network to allow connections to your system that will run the file share. On Ubuntu, it is simple as installing the Samba server and configuring the files to your requirements. Remember your username, password, and user visibility (permissions) to access the file on various machines. As long as your machine can communicate with the Samba server, it will be able to access the file share.
+ 
+
+
+
+
+
+VPN Server Using OpenVPN
+OpenVPN has extensive guides to set up and configure your VPN server to allow remote connections to your network. There is not much for me to add here. If you follow the OpenVPN documentation, you will be able to set up your VPN server, user certificates, and other settings to access your network. Be aware of static IPs and routing. If you are using DHCP, IP addresses may change and break your systems; you may need to reserve a group of addresses for your network before you begin this process. If you are having trouble following the guide, there are numerous communities and videos to troubleshoot or navigate your setup. I will include some videos in the links section.
+ 
+Firewall Using pfSense
+While we have a lot of our system hidden behind VPN access, physical access, and local protection, adding a firewall is another layer of protection for your network. I used this firewall to enable rules to only allow specific traffic between users and the raspberry pi 5. As you build your various machines, make sure to only allow what is necessary and follow the best security practice. Ports not in use should be disabled to prevent vulnerabilities. The firewall for this project is to monitor and allow precise traffic between the user and the sensitive machines. There are many tutorials and guides in the links section to help work on your configuration.
+Softphones
+MicroSIP and MizuDroid are softphones used for Windows and Android, respectively. These need to be configured to reach your 3CXOne pbx or another pbx that you set up. Creating user profiles on the 3CXOne configuration page will make these easy to set up on the softphones. Go to their respective configuration settings to add the connection to the server (network connection).
+ 
+AWS EC2, EIP, IAM
+To start, be incredibly careful when configuring things with AWS. If you want to use their services for free, you need to pay close attention to how each setting could affect your systems and cost.
+First, set up your IAM configurations. You want admin permissions and user permissions for all the changes you are going to be making to AWS. Setting up the user permissions first will prevent you from running into errors later down the line.
+Next, configure your IP tables and routing as you need to connect to your network. Consider EIP to connect your system to the internet. This EIP is associated with your AWS and can spread across systems as you configure them.
+Next, configure your EC2 instance settings to run the authentication site provided in the GitHub. Configure the computing requirements and verify you can gain access from your network or internet.
+Determine how you want to host the authentication site, you could make a new machine to run the program or decide to use the computing AWS services to run it as a simple nodejs system.
+While these sound simple, they can become extraordinarily complex, very quickly. There are guides, links, and videos to work through these sections of the project in the links section. 
+
+
+
+
+
+
+
+
+Authentication Site
+This site is running a node.js program that is being hosted by AWS. Users can navigate to the AWS page and go through the steps in the authentication site. Users can register/update their profile for their VPN certificate permission. This project hosts a network locally for users to connect remotely using  OpenVPN. This site allows users to request permission to utilize the VPN to connect remotely to the services provided. A MongoDB service is ready to be implemented to store the data of your users from this site. You will need to add your database details for the script to reach out. This site is not fully developed and needs to be manually reviewed as an automated system for authentication has not been developed.
+ 
+
+
+
+
+Useful Links
+Raspberry Pi 5
+https://www.jeffgeerling.com/blog/2024/raspberry-pi-boosts-pi-5-performance-sdram-tuning
+https://www.amazon.com/CanaKit-Raspberry-Starter-Kit-PRO/dp/B0CRSNCJ6Y/ref=pd_bxgy_thbs_d_sccl_2/147-1016285-2940440?pd_rd_w=ovzqL&content-id=amzn1.sym.de9a1315-b9df-4c24-863c-7afcb2e4cc0a&pf_rd_p=de9a1315-b9df-4c24-863c-7afcb2e4cc0a&pf_rd_r=K3NFEQBDBPRWDQ15DS2P&pd_rd_wg=p62uL&pd_rd_r=a758486f-d656-4abd-995a-013dbd10fae7&pd_rd_i=B0CRSNCJ6Y&th=1
+https://www.lenovo.com/us/en/glossary/what-is-ddr-sdram/?orgRef=https%253A%252F%252Fwww.google.com%252F
+https://www.jeffgeerling.com/blog/2024/numa-emulation-speeds-pi-5-and-other-improvements
+3CXOne PBX
+https://www.3cx.com/pbx/virtual/
+https://www.3cx.com/docs/manual/install/#h.utqnrg8umbcf
+https://www.3cx.com/docs/manual/setup-team/ 
+https://www.3cx.com/docs/manual/ip-phones/#h.xch7xw79u4e6
+https://www.youtube.com/watch?v=eU2pUShMMMA
+https://www.youtube.com/watch?v=Gmr2eqJJxck
+https://www.youtube.com/watch?v=ikxU_YMIsTM&pp=0gcJCdgAo7VqN5tD
+Samba
+https://ubuntu.com/tutorials/install-and-configure-samba#1-overview 
+https://documentation.ubuntu.com/server/how-to/samba/file-server/index.html
+https://phoenixnap.com/kb/ubuntu-samba 
+
+
+OpenVPN
+https://openvpn.net/community-resources/how-to/
+https://openvpn.net/as-docs/getting-started.html
+https://openvpn.net/as-docs/tutorials/tutorial--configure-access-server.html
+https://www.youtube.com/watch?v=S5m70wmRvgA
+https://www.youtube.com/watch?v=p3HszAtNu-s&pp=0gcJCdgAo7VqN5tD 
+pfSense
+https://4sysops.com/archives/how-to-install-the-pfsense-firewall-on-a-virtual-machine/
+https://medium.com/@meghraj312002/how-to-install-pfsense-on-your-pcs-and-virtual-machines-76434758e024
+https://www.youtube.com/watch?v=VxFGymlrOc0
+https://www.youtube.com/watch?v=wUD1ZjPb4kw&pp=0gcJCdgAo7VqN5tD
+https://www.youtube.com/watch?v=he3ENpMLMsc&pp=0gcJCdgAo7VqN5tD
+https://docs.netgate.com/pfsense/en/latest/install/install-walkthrough.html
+https://www.pfsense.org/getting-started/
+https://www.zenarmor.com/docs/network-security-tutorials/how-to-configure-pfsense-firewall-rules 
+Softphones
+https://www.mizu-voip.com/Portals/0/Files/Android_User_Guide.pdf
+https://www.mizu-voip.com/Portals/0/Files/Android_Softphone_Guide.pdf
+https://www.microsip.org/help
+https://help.cloudtalk.io/en/articles/5373619-how-to-set-up-microsip
+https://www.youtube.com/watch?v=8LH4oyGOkXQ 
+https://support.hanwhavisionamerica.com/hc/en-us/articles/4410939642523-How-to-Connect-MicroSIP-Softphone-for-the-Intercom-via-Peer-to-Peer
+https://wiki.voip.ms/article/MizuPhone 
+AWS
+https://www.youtube.com/watch?v=74e1asRdR7k&pp=ygUVI2F3c2VjMmluc3RhbmNlbGF1bmNo&t=193
+https://aws.amazon.com/ec2/getting-started/
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
+https://www.youtube.com/watch?v=8SQnGqp3YZM
+https://www.youtube.com/watch?v=2zeoNC4cdTA
+https://www.geeksforgeeks.org/amazon-ec2-creating-an-elastic-cloud-compute-instance/
+https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
+https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html
+https://www.cyberciti.biz/faq/set-up-a-basic-iptables-firewall-on-amazon-linux-ami/
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html
+https://docs.aws.amazon.com/waf/latest/developerguide/waf-ip-set-managing.html
+https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html
+https://www.sweetprocess.com/procedures/_eG30mkvYDrfAmevj78A0i6E1GZE/add-an-administrator-to-your-amazon-aws-account/
+https://docs.aws.amazon.com/streams/latest/dev/setting-up.html
+https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-account-iam.html
+https://docs.aws.amazon.com/lexv2/latest/dg/gs-account.html 
+Authentication Site
+https://github.com/CaseyGunterCapstone/Private-Network-Project/tree/main/Authentication 
+https://www.youtube.com/watch?v=0Pt7Kfh78Jg
+https://www.mongodb.com/docs/manual/tutorial/getting-started/
+https://www.mongodb.com/docs/manual/installation/ 
