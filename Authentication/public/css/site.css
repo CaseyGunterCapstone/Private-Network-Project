@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    margin-left: 12%;
+    padding-bottom: 10%;
+    padding-top: 10%
+}
+input{
+    align-items: right;
+}
+footer {
+    padding-top: 12%;
+}
+html {
+    background-color: cornsilk;
+}
