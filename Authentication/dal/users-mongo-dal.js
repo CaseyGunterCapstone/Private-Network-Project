@@ -22,7 +22,7 @@ exports.DAL = {
         return changeSomeone(body, changes);
     }
 };
-const uri = "mongodb+srv://cgunter:TGnuDtFEhYSdrpBx@users.5zlj3.mongodb.net/?retryWrites=true&w=majority&appName=Users";
+//const uri = "mongodb+srv://{insert_your_mongodb_info};
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const client = new MongoClient(uri, {
 serverApi: {
